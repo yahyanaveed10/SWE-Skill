@@ -1,0 +1,27 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python3 -c \"import pypdf; print\\('pypdf ok'\\)\")",
+      "Bash(python3 -c \"import pdfplumber; print\\('pdfplumber ok'\\)\")",
+      "Bash(python3 -c \"import fitz; print\\('pymupdf ok'\\)\")",
+      "Bash(python3 -m pip install --user --quiet pypdf)",
+      "Bash(python3 -c \"import pypdf; print\\('ok'\\)\")",
+      "Bash(cat)",
+      "Bash(python3 /tmp/extract_pdfs.py)",
+      "Bash(gh auth *)",
+      "Bash(gh repo *)",
+      "Bash(cp /Users/yahyanaveed10/Documents/GitHub/SWE-Skill/.claude/skills/swe-router/SKILL.md /tmp/swe-router-draft.md)",
+      "Bash(rm -rf /Users/yahyanaveed10/Documents/GitHub/SWE-Skill/.claude/skills)",
+      "Bash(gh api *)",
+      "Bash(git checkout *)",
+      "Bash(git push *)",
+      "Bash(gh issue *)",
+      "Bash(git add *)",
+      "Bash(git commit -m 'chore: scaffold repo structure and README *)"
+    ]
+  },
+  "enableAllProjectMcpServers": true,
+  "enabledMcpjsonServers": [
+    "supabase"
+  ]
+}
