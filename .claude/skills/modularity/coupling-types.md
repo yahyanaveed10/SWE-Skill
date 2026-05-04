@@ -69,17 +69,12 @@ This is the target. It does not always mean functions with many primitive parame
 
 ---
 
-## Coupling metrics
+## Structural signals worth tracking
 
-| Metric | What it measures | Signal |
-|---|---|---|
-| CBO (Coupling Between Objects) | Number of classes a class is directly coupled to | High CBO → many dependencies, low modularity |
-| RFC (Response For a Class) | Distinct methods executable in response to a message | High RFC → high complexity, high test effort |
-| Ce (Efferent Coupling) | Modules this module depends on | High Ce → this module is fragile (depends on many others) |
-| Ca (Afferent Coupling) | Modules that depend on this module | High Ca → this module is load-bearing (risky to change) |
-| Instability | Ce / (Ca + Ce) → 0 to 1 | 0 = stable (depended on, depends on little); 1 = unstable (depends on many, few depend on it) |
-| Propagation Cost | Fraction of system potentially affected by a change here | High → structural risk |
+**Too many outbound dependencies (high efferent coupling):** This module depends on many others — it is fragile. A change anywhere in its dependency chain can break it. Signal: the import list is long and growing.
 
-**Instability and the Stable Dependencies Principle:** High-level policy modules should have low instability (stable). Low-level detail modules should have high instability (easy to replace). If a stable module depends on an unstable one, a change in the unstable module forces a change in stable policy — architectural risk.
+**Too many inbound dependencies (high afferent coupling):** Many modules depend on this one — it is load-bearing. Changing it has wide blast radius. Signal: before changing this module, check who calls it; the answer will be "everyone."
 
-**Dependency cycles:** Any non-zero cycle count is a structural problem. Cycles prevent independent testing and deployment, and they make the instability metric meaningless within the cycle.
+**Instability mismatch:** A stable, widely-depended-on module should not itself depend on volatile, frequently-changing modules. If it does, volatility propagates upward into what should be stable. Signal: your core domain logic imports from your infrastructure layer.
+
+**Dependency cycles:** Any cycle between modules is a structural problem — it prevents independent testing, independent deployment, and makes the dependency graph impossible to reason about. Signal: you cannot test module A without also loading module B, which also requires module A. Tools like `madge` (JS), `pydeps` (Python), or `go list -deps` expose cycles.

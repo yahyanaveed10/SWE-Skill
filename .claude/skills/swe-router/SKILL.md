@@ -1,11 +1,11 @@
 ---
 name: swe-router
-description: Technical concern router for software engineering work. Identifies which domain-specific skills to load based on task signals — covering modularity, anti-patterns, reuse, testability, security design, performance, architecture selection, deployment, AI/ML engineering, and AI collaboration. Use when designing systems, reviewing code for structural or quality issues, making architecture decisions, handling sensitive data, investigating performance, setting up pipelines, or building AI/ML features. Does not cover process steps (use /understand, /plan, /implement, /debug, /review for those) or issue/branch flow (use issue-branch-orchestrator).
+description: Technical concern router for software engineering work. Identifies which domain-specific skills to load based on task signals — covering modularity, anti-patterns, reuse, testability, security, performance, architecture, deployment, observability, data/API design, scoping, resilience, concurrency, and AI collaboration. Use when designing systems, reviewing code, making architecture decisions, handling data or APIs, debugging production issues, or building AI features. Does not cover process steps (use /understand, /plan, /implement, /debug, /review for those) or issue/branch flow (use issue-branch-orchestrator).
 ---
 
 # SWE Technical Concern Router
 
-Loads first on substantive engineering work. Identifies which of the ten domain skills are relevant and in what order. Does not replace process commands — it routes to technical knowledge those commands don't carry.
+Loads first on substantive engineering work. Identifies which domain skills are relevant and in what order. Does not replace process commands — it routes to technical knowledge those commands don't carry.
 
 ## Hard rules (always apply, regardless of domain)
 
@@ -23,63 +23,83 @@ These are non-negotiable. They are the anti-hallucination layer.
 
 **Stop before destructive or irreversible actions.** Do not proceed with deleting files, dropping tables, force-pushing, resetting state, or adding new external dependencies without surfacing the action and its consequences first.
 
+**The 70% problem.** Agents complete the happy path. What is consistently missing: error handling, timeouts, idempotency, observability, edge cases, and failure modes. Before declaring any implementation complete, ask: what happens when this fails? Is there a timeout? Is the error observable? Is a retry safe?
+
 ## Domain routing
 
-Load the relevant skill based on task signals. Multiple skills may apply to a single task.
+Load the relevant skill based on task signals. Multiple skills may apply.
 
 ### modularity
-**Load when:** designing or reviewing module or class boundaries, evaluating dependencies between components, deciding what to expose in a public interface, investigating why changes ripple unexpectedly across the codebase.
+**Load when:** designing or reviewing module/class boundaries, evaluating dependencies, deciding what to expose in a public interface, investigating why changes ripple unexpectedly.
 
-Covers: coupling types and metrics (CBO, RFC, Instability), cohesion types, SOLID as diagnostic signals, dependency cycle detection.
+Covers: coupling types (Content through Data), cohesion types, structural dependency signals (load-bearing modules, instability mismatches, cycles), SOLID as diagnostics.
 
 ### anti-patterns
-**Load when:** reviewing code for structural problems, planning a refactor of messy or legacy code, noticing a class or module is doing too much, evaluating whether an existing design is causing maintenance pain.
+**Load when:** reviewing code for structural problems, planning a refactor, noticing a class or module is doing too much, evaluating whether an existing design is causing maintenance pain.
 
-Covers: Blob/God Class, Functional Decomposition, Golden Hammer, Design-by-Committee, Lava Flow, Spaghetti — each with detection signals and refactoring reasoning prompts.
+Covers: Blob/God Class, Functional Decomposition, Golden Hammer, Design-by-Committee, Lava Flow, Spaghetti.
 
 ### reuse-and-patterns
-**Load when:** deciding whether to use an existing library or build something new, evaluating whether a design pattern applies, designing something that will need to vary or extend over time.
+**Load when:** deciding whether to use an existing library or build something new, evaluating whether a design pattern applies, designing for extension or variation.
 
-Covers: GoF pattern signals (when a pattern fits vs. when it adds unnecessary indirection), reuse strategy trade-offs (adopt library / adopt framework / copy-and-adapt / extract abstraction).
+Covers: GoF pattern signals (signal + overkill-when), reuse strategy trade-offs, patterns most often misapplied.
 
 ### testability
-**Load when:** code is difficult to test and the reason is unclear, designing new code that will need a test suite, reviewing why a test suite is slow or brittle, refactoring to improve test coverage without changing tests.
+**Load when:** code is difficult to test, designing new code that needs a test suite, reviewing why tests are slow or brittle.
 
-Covers: Controllability, Observability, Isolation as design properties (not testing steps), test smells, seam identification.
+Covers: Controllability, Observability, Isolation as design properties, test smells, seam identification, Humble Object.
 
 ### security-engineering
-**Load when:** designing authentication or authorisation flows, handling user input or external data, storing or transmitting sensitive data, threat-modelling a new feature or integration, identifying trust boundaries.
+**Load when:** designing authentication or authorisation, handling user input or external data, storing or transmitting sensitive data, threat-modelling a new feature, identifying trust boundaries.
 
-Covers: STRIDE threat modelling as reasoning prompts, secure design principles (least privilege, fail secure, defence in depth), common vulnerability signals (injection, IDOR, SSRF, path traversal).
+Covers: STRIDE as reasoning prompts, secure design principles, common vulnerability signals (injection, IDOR, SSRF, path traversal).
 
-Note: for reviewing existing code against a security checklist, use the `security-review` command instead.
+Note: for reviewing existing code against a security checklist, use the `security-review` command.
 
 ### performance-engineering
-**Load when:** investigating slow code or high resource usage, choosing data structures or algorithms for a hot path, designing caching, evaluating whether an optimisation is worth its complexity cost.
+**Load when:** investigating slow code or high resource usage, choosing data structures for a hot path, designing caching, evaluating whether an optimisation is worth its complexity cost.
 
-Covers: measure-before-optimise discipline, O(n²)/N+1/lock-contention signals, caching trade-offs.
-
-Note: infrastructure-level performance decisions (sharding, CDN, queues) belong in `architecture-selection`.
+Covers: measure-before-optimise, O(n²)/N+1/lock-contention signals, caching trade-offs.
 
 ### architecture-selection
-**Load when:** starting a new system or major component, deciding between architecture styles (monolith, microservices, event-driven, serverless, hexagonal), making a decision significant enough to be hard to reverse.
+**Load when:** starting a new system or major component, deciding between architecture styles, making a decision significant enough to be hard to reverse.
 
-Covers: style trade-off rubrics (fits-when / doesn't-fit-when), context-based decision dimensions (team size, data ownership, operational maturity), ADR template.
+Covers: style trade-offs (monolith, microservices, event-driven, serverless, hexagonal), context-based decision rubric, ADR template.
 
 ### source-to-deployment
-**Load when:** setting up or modifying a CI/CD pipeline, containerising an application, designing a deployment strategy, working with infrastructure-as-code, debugging a build or release failure.
+**Load when:** setting up or modifying CI/CD, containerising an application, designing a deployment strategy, working with IaC, debugging a build or release failure.
 
-Covers: pipeline stage signals, container heuristics, deployment strategy trade-offs (rolling / blue-green / canary), IaC value signals.
+Covers: pipeline stage signals, container heuristics, deployment strategy trade-offs (rolling/blue-green/canary/feature flags), IaC signals.
 
-### ai-engineering
-**Load when:** building features that use machine learning models, setting up training or inference pipelines, evaluating model quality, integrating an ML model into production.
+### observability
+**Load when:** writing code that will run in production, adding error handling, designing a service, diagnosing why a production failure is hard to debug, or when generated code has no logging.
 
-Covers: ML pipeline discipline, evaluation-first thinking, MLOps failure modes (drift, reproducibility, monitoring gaps).
+Covers: structured logging, logs vs. metrics vs. traces, cardinality, four golden signals, distributed tracing, SLO-based alerting.
+
+### data-and-api-design
+**Load when:** designing a new schema, writing a migration, designing an API endpoint, adding a field to an existing API, versioning an API, or evaluating backward compatibility.
+
+Covers: expand/contract migration pattern, expensive schema mistakes, backward compatibility as hard constraint, idempotency, API versioning, cursor pagination, null vs. absent.
+
+### scoping-discipline
+**Load when:** asked to "just make it work," estimating what a first version needs, deciding what to cut from scope, evaluating whether a prototype is ready to promote to production.
+
+Covers: PoC vs MVP vs production requirements, what is safe to skip at each stage, the promotion checklist, cost-of-failure heuristic, over/under-scope signals.
+
+### resilience-engineering
+**Load when:** writing code that calls external services, databases, queues, or any dependency that can fail; designing retry logic; debugging cascading failures.
+
+Covers: timeout (every outbound call), retry with exponential backoff and jitter, circuit breaker, bulkhead, graceful degradation, load shedding, partial failure in distributed calls.
+
+### concurrency
+**Load when:** writing multi-threaded or async code, reviewing code for thread safety, debugging non-deterministic failures, or when a system behaves differently under load than in sequential tests.
+
+Covers: race condition signals (read-modify-write, check-then-act), async/await correctness, fire-and-forget errors, the concurrency testing gap.
 
 ### ai-collaboration
-**Load when:** an agent (including the current one) is generating code, reviewing AI-generated code before use, designing guardrails for an AI-assisted workflow, evaluating AI-generated tests.
+**Load when:** generating code with AI assistance, reviewing AI-generated code, building features where an ML model is the core product, evaluating AI-generated tests.
 
-Covers: generation guardrails, hallucination failure modes in code generation, AI test coverage gaps, human-in-the-loop gates for AI-assisted requirements.
+Covers: generation hallucination modes, AI test coverage gaps, ML system failure modes (training/serving skew, model rot, feedback loops).
 
 ## Routing by task signal
 
@@ -90,16 +110,20 @@ Covers: generation guardrails, hallucination failure modes in code generation, A
 | "Design auth / permissions" | `security-engineering` | `architecture-selection` |
 | "Why is this slow?" | `performance-engineering` | `architecture-selection` (if systemic) |
 | "Should we use microservices?" | `architecture-selection` | `source-to-deployment` |
-| "Set up CI/CD" | `source-to-deployment` | `testability` |
+| "Set up CI/CD" | `source-to-deployment` | `testability`, `observability` |
 | "This is hard to test" | `testability` | `modularity`, `anti-patterns` |
 | "Use a library or build it?" | `reuse-and-patterns` | `architecture-selection` |
-| "Add an ML feature" | `ai-engineering` | `ai-collaboration`, `security-engineering` |
+| "Add an ML feature" | `ai-collaboration` | `security-engineering`, `data-and-api-design` |
 | "Review AI-generated code" | `ai-collaboration` | `anti-patterns`, `testability` |
-| "Design a new system from scratch" | `architecture-selection` | `security-engineering`, `modularity` |
+| "Design a new system from scratch" | `architecture-selection` | `security-engineering`, `modularity`, `observability` |
+| "Write a migration" | `data-and-api-design` | `source-to-deployment` |
+| "Add a new API endpoint" | `data-and-api-design` | `security-engineering`, `observability` |
+| "Is this PoC ready for production?" | `scoping-discipline` | `observability`, `resilience-engineering` |
+| "Nothing in the logs / can't debug this" | `observability` | — |
+| "Service goes down when dependency is slow" | `resilience-engineering` | `observability` |
+| "Tests pass but prod fails sometimes" | `concurrency` | `testability` |
 
 ## Process command cross-reference
-
-These commands handle the engineering process and are not duplicated here:
 
 - `/understand` — inspect context before any change
 - `/plan` — produce a short implementation plan
