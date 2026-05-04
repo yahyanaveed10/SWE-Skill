@@ -1,6 +1,6 @@
 ---
 name: ai-collaboration
-description: Guardrails for using AI-generated code, tests, and requirements. Use when reviewing AI-generated output before committing, identifying which types of AI generation are high-risk for hallucination, using AI to assist with test writing, or translating between informal requirements and testable specifications. Does not cover ML system design or MLOps (see ai-engineering).
+description: Guardrails for using AI-generated code, tests, and requirements, and for building features where the AI model IS the product (ML pipelines, LLM integrations). Use when reviewing AI-generated output before committing, identifying hallucination-prone generation types, using AI for test writing or requirements work, or diagnosing why an ML feature works in a notebook but fails in production.
 ---
 
 # AI Collaboration
@@ -10,6 +10,7 @@ AI generation produces output that looks correct at the same confidence level re
 For AI generation hallucination modes see [generation-guardrails.md](generation-guardrails.md).
 For AI assistance with testing see [ai-for-testing.md](ai-for-testing.md).
 For AI assistance with requirements see [ai-for-requirements.md](ai-for-requirements.md).
+For ML system failure modes (when the AI model IS the feature) see [ml-system-signals.md](ml-system-signals.md).
 
 ## The core asymmetry
 
@@ -37,3 +38,16 @@ The asymmetry matters because:
 - Security-sensitive decisions (injection vectors, trust boundaries, privilege escalation paths)
 
 For these, AI output is a starting point for human review, not a result.
+
+## When the AI model IS the feature
+
+Most AI collaboration concerns are about using AI to write software. A different set of concerns applies when you are building a feature where an ML model or LLM is the core product — a recommendation system, a classifier, a generative interface.
+
+The dominant failure is the **notebook-to-production gap**: a model that works in a Jupyter notebook is not a system. Key signals that an ML feature is not production-ready:
+- Training features and serving features are computed by different code paths (training/serving skew)
+- The model has no monitoring on output quality — only infrastructure monitoring (latency, uptime)
+- Retraining is manual and infrequent
+- The model's outputs influence future training data (feedback loop debt)
+- "It works" means "it worked in the notebook validation set"
+
+See [ml-system-signals.md](ml-system-signals.md) for the full signal set.
