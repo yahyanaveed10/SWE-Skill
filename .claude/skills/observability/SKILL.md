@@ -10,6 +10,7 @@ A system is observable if you can ask arbitrary questions about its runtime beha
 For structured logging signals see [logging-signals.md](logging-signals.md).
 For metrics and distributed tracing see [metrics-and-traces.md](metrics-and-traces.md).
 For alerting discipline see [alerting-signals.md](alerting-signals.md).
+For SLO design and error budget management see [slo-design.md](slo-design.md).
 
 ## The signal that a system is un-observable
 
