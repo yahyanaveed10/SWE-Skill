@@ -1,6 +1,6 @@
 ---
 name: performance-engineering
-description: Performance investigation and optimisation discipline. Use when investigating slow code or high resource usage, choosing data structures or algorithms for a hot path, designing caching strategies, or evaluating whether an optimisation is worth its complexity cost. Covers measure-before-optimise as the hard rule, reading profiling output, O(n²)/N+1/lock-contention signals, and caching trade-offs. Infrastructure-level performance decisions (sharding, CDN, queues) belong in the architecture-selection skill.
+description: Performance investigation, optimisation discipline, and capacity planning. Use when investigating slow code or high resource usage, choosing data structures or algorithms for a hot path, designing caching strategies, evaluating whether an optimisation is worth its complexity cost, or designing load tests and sizing infrastructure for expected traffic. Covers measure-before-optimise as the hard rule, reading profiling output, O(n²)/N+1/lock-contention signals, caching trade-offs, and load/stress/soak testing for capacity planning. Infrastructure-level performance decisions (sharding, CDN, queues) belong in architecture-selection.
 ---
 
 # Performance Engineering
@@ -12,6 +12,7 @@ Optimising without measurement is guessing. Guessing produces complex code that 
 For profiling discipline and reading output see [profiling-first.md](profiling-first.md).
 For common complexity and bottleneck signals see [complexity-signals.md](complexity-signals.md).
 For caching trade-offs see [caching-heuristics.md](caching-heuristics.md).
+For capacity planning and load/stress/soak testing see [capacity-and-load-testing.md](capacity-and-load-testing.md).
 
 ## Performance dimensions
 
