@@ -1,6 +1,6 @@
 ---
 name: scoping-discipline
-description: PoC vs MVP vs production scoping decisions. Use when asked to 'just make it work', when estimating what is needed for a first version, when deciding what to cut from scope, when evaluating whether a prototype is ready to promote, or when a working demo is being treated as production-ready. Covers what each stage actually requires, what is safe to defer, what creates hard-to-reverse technical debt, and when to rewrite vs. promote. Does not cover product prioritisation or roadmap — engineering scope only.
+description: Scope-shaping disciplines — PoC vs MVP vs production decisions, technical debt management, requirements ambiguity resolution, and estimation. Use when asked to 'just make it work', when estimating what is needed for a first version, when deciding what to cut from scope, when evaluating whether a prototype is ready to promote, when given a vague requirement that needs decomposition, when communicating delivery uncertainty, or when deciding whether to pay down technical debt vs. ship features. Covers stage-appropriate requirements, the cost-of-failure heuristic, the debt quadrant and paydown patterns, ambiguity decomposition, and estimation under uncertainty. Does not cover product prioritisation or roadmap — engineering scope only.
 ---
 
 # Scoping Discipline
@@ -9,6 +9,9 @@ The most common cause of both over-engineered PoCs and under-engineered MVPs is 
 
 For what each stage requires see [poc-vs-mvp-vs-production.md](poc-vs-mvp-vs-production.md).
 For signals that scope is wrong see [scope-signals.md](scope-signals.md).
+For technical debt management (the debt quadrant, paydown patterns) see [technical-debt.md](technical-debt.md).
+For decomposing vague requirements and identifying hidden constraints see [requirements-and-ambiguity.md](requirements-and-ambiguity.md).
+For estimation under uncertainty see [estimation.md](estimation.md).
 
 ## The core heuristic
 
