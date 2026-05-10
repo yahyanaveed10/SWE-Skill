@@ -1,6 +1,6 @@
 ---
 name: architecture-selection
-description: Architecture style selection and decision reasoning. Use when starting a new system or major component, deciding between monolith vs microservices vs serverless, choosing between layered/hexagonal/event-driven/pipeline styles, or making an architectural decision significant enough to be hard to reverse. Covers style trade-offs (fits-when / does-not-fit-when), a context-based decision rubric (team size, data ownership, operational maturity, consistency requirements), and an ADR template. Does not cover cloud-provider-specific services or RE and product scoping (use idea-to-project-planner for that).
+description: Architecture style selection, design documentation, and cost-aware design. Use when starting a new system or major component, deciding between monolith vs microservices vs serverless, choosing between layered/hexagonal/event-driven/pipeline styles, writing a design doc or RFC, or evaluating the cost implications of an architectural choice. Covers style trade-offs (fits-when / does-not-fit-when), a context-based decision rubric, ADR and RFC templates, and cost as an architectural constraint (build-vs-buy, sync-vs-async, dedicated-vs-shared). Does not cover cloud-provider-specific services.
 ---
 
 # Architecture Selection
@@ -12,6 +12,8 @@ The goal of this skill is not to recommend an architecture. It is to surface the
 For architecture style trade-offs see [styles.md](styles.md).
 For the context-based decision rubric see [decision-rubric.md](decision-rubric.md).
 For Architecture Decision Records see [adrs.md](adrs.md).
+For design documents (RFCs) see [design-docs.md](design-docs.md).
+For cost as an architectural constraint see [cost-awareness.md](cost-awareness.md).
 
 ## The most dangerous question
 
