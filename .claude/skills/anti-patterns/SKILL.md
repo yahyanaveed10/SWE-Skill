@@ -1,6 +1,6 @@
 ---
 name: anti-patterns
-description: Identifies and reasons through recurring software anti-patterns during code review and refactoring. Covers code-level smells (Blob/God Class, Functional Decomposition, Lava Flow, Spaghetti, Copy-Paste) and architectural smells (Golden Hammer, Design-by-Committee, Stovepipe, Big Ball of Mud). Use when reviewing existing code structure, planning a refactor, noticing a class or module is doing too much, or evaluating whether a design is causing maintenance pain. Does not cover performance-specific anti-patterns (N+1, premature optimisation) or security anti-patterns (hardcoded secrets).
+description: Identifies and reasons through recurring software anti-patterns and the discipline of refactoring safely. Covers code-level smells (Blob/God Class, Functional Decomposition, Lava Flow, Spaghetti, Copy-Paste), architectural smells (Golden Hammer, Design-by-Committee, Stovepipe, Big Ball of Mud), refactoring signals (when to refactor), and refactoring discipline (how to refactor safely — under tests, in small steps, with the Mikado method for large refactorings). Use when reviewing existing code structure, planning or executing a refactor, noticing a class or module is doing too much, or evaluating whether a design is causing maintenance pain. Does not cover performance-specific anti-patterns (N+1, premature optimisation) or security anti-patterns (hardcoded secrets).
 ---
 
 # Anti-Patterns
@@ -10,6 +10,7 @@ An anti-pattern is a recurring solution that appears to work but generates decid
 For code-level smells see [code-smells.md](code-smells.md).
 For architecture-level smells see [architectural-smells.md](architectural-smells.md).
 For when to refactor vs leave it see [refactoring-signals.md](refactoring-signals.md).
+For how to refactor safely (refactor under test, small steps, Mikado method) see [refactoring-discipline.md](refactoring-discipline.md).
 
 ## Root causes
 
