@@ -1,6 +1,6 @@
 ---
 name: security-engineering
-description: Security design and threat modelling for software systems. Use when designing authentication or authorisation flows, handling user input or external data, storing or transmitting sensitive data, identifying trust boundaries in a new feature, threat-modelling a new integration, or reasoning about access control. Covers STRIDE threat modelling as reasoning prompts, secure design principles, and common vulnerability signals. Does not cover code review security checklists (use the security-review command for that) or deployment secrets management (use the source-to-deployment skill for that).
+description: Security design, threat modelling, and compliance engineering. Use when designing authentication or authorisation flows, handling user input or external data, storing or transmitting sensitive data, identifying trust boundaries in a new feature, threat-modelling a new integration, reasoning about access control, designing audit trails, implementing data retention or right-to-erasure, or handling PII in logs. Covers STRIDE threat modelling, secure design principles, common vulnerability signals, and the engineering subset of compliance (PII handling, audit trails, data retention/deletion, encryption at rest, key management). Does not cover code review security checklists (use the security-review command) or legal interpretation of regulations.
 ---
 
 # Security Engineering
@@ -12,6 +12,7 @@ Security engineering means asking security questions at design time, not only at
 For threat modelling with STRIDE see [threat-modeling.md](threat-modeling.md).
 For secure design principles see [secure-design-principles.md](secure-design-principles.md).
 For common vulnerability signals see [common-vulnerabilities.md](common-vulnerabilities.md).
+For compliance engineering (PII in logs, audit trails, data retention, right to erasure, encryption at rest) see [compliance-engineering.md](compliance-engineering.md).
 
 ## Safety vs. security
 
