@@ -45,10 +45,8 @@ An alert without a runbook entry is an alert that will be mishandled under press
 
 ---
 
-## SLOs and error budgets
+## SLO-based alerting (briefly)
 
-An SLO (Service Level Objective) defines the target reliability level. An error budget is the allowed deviation from perfect reliability within a time window.
+SLO-based alerting fires on **error budget burn rate** rather than absolute thresholds. A short burst of errors can be a fluke; sustained burn against the budget is genuine degradation that warrants paging.
 
-**Example:** 99.9% availability over 30 days = 43 minutes of allowable downtime. If you have consumed 40 minutes in the first 20 days, you are burning your error budget 3x faster than sustainable — alert on the burn rate, not just the current availability percentage.
-
-**Why burn-rate alerting is better than threshold alerting:** a 1% error rate for 5 minutes may be an experiment or a fluke. A 1% error rate sustained for 2 hours is consuming error budget at 10x the sustainable rate — that is worth waking someone up. Burn-rate alerts distinguish between these cases. Static threshold alerts do not.
+For the full discipline — defining SLIs from user pain, picking SLO targets, multi-window multi-burn-rate alerting, and using the error budget as a release gate — see [slo-design.md](slo-design.md).

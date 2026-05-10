@@ -1,6 +1,6 @@
 ---
 name: source-to-deployment
-description: CI/CD pipeline design, container configuration, deployment strategy selection, and infrastructure-as-code signals. Use when setting up pipelines, choosing between deployment strategies (blue/green, canary, rolling, feature flags), evaluating Dockerfile or container configuration, reviewing IaC (Terraform, Pulumi, CloudFormation), or diagnosing pipeline failures. Does not cover application-level performance or security code review (see performance-engineering and security-engineering).
+description: CI/CD pipeline design, container configuration, deployment strategy selection, infrastructure-as-code, and dependency/supply chain management. Use when setting up pipelines, choosing between deployment strategies (blue/green, canary, rolling, feature flags), evaluating Dockerfile or container configuration, reviewing IaC (Terraform, Pulumi, CloudFormation), diagnosing pipeline failures, adding a new package dependency, or evaluating supply chain security. Does not cover application-level performance or security code review (see performance-engineering and security-engineering).
 ---
 
 # Source to Deployment
@@ -11,6 +11,7 @@ For CI/CD pipeline patterns see [cicd-patterns.md](cicd-patterns.md).
 For container and runtime signals see [container-signals.md](container-signals.md).
 For deployment strategy trade-offs see [deployment-strategies.md](deployment-strategies.md).
 For infrastructure-as-code signals see [iac-signals.md](iac-signals.md).
+For dependency hygiene, version pinning, vulnerability scanning, SBOM, and supply chain attack signals see [dependency-management.md](dependency-management.md).
 
 ## The core question
 

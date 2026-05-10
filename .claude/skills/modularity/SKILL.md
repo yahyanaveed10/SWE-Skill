@@ -1,6 +1,6 @@
 ---
 name: modularity
-description: Operational reference for module boundaries, coupling, and cohesion. Use when designing new modules or components, splitting large files or classes, evaluating dependencies between parts of a system, deciding what to expose in a public interface, or investigating why changes ripple unexpectedly. Covers coupling types (Content through Data), cohesion types (Coincidental through Functional), structural dependency signals (load-bearing modules, instability mismatches, cycles), and SOLID as diagnostic signals.
+description: Operational reference for module boundaries, coupling, cohesion, and abstraction depth. Use when designing new modules or components, splitting large files or classes, evaluating dependencies between parts of a system, deciding what to expose in a public interface, naming things well, evaluating whether an abstraction is shallow or deep, or investigating why changes ripple unexpectedly. Covers coupling types (Content through Data), cohesion types (Coincidental through Functional), structural dependency signals (load-bearing modules, instability mismatches, cycles), naming and abstraction depth (Ousterhout), and SOLID as diagnostic signals.
 ---
 
 # Modularity
@@ -10,6 +10,7 @@ Good module design is not about file count or folder structure. It is about maki
 For coupling types and signals see [coupling-types.md](coupling-types.md).
 For cohesion types and signals see [cohesion-types.md](cohesion-types.md).
 For structural dependency signals see [coupling-types.md](coupling-types.md) (structural signals section at the end).
+For naming, abstraction depth, and information hiding see [naming-and-abstraction.md](naming-and-abstraction.md).
 
 ## Core question
 
